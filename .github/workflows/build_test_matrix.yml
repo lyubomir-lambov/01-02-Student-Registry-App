@@ -9,21 +9,25 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-versions: [24, 23, 22]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [24, 23, 22]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - name: checkout the code
-      uses: actions/checkout@v4
-    - name: Use Node.js ${{matrix.node-version}}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{matrix.node-version}}
-        cache: 'npm'
-    - name: Install dependencies
-      run: npm install
-    - name: Run tests
-      run: npm test
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
