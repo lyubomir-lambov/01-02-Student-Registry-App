@@ -42,7 +42,6 @@ jobs:
           service_id: ${{ secrets.SERVICE_ID }}
           api_key: ${{ secrets.API_KEY }}
           wait_deploy: true
-          ref: 'v1.0.0'
 
 
     # С примера от упражнението
