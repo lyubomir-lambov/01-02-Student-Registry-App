@@ -36,9 +36,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to production
-        uses: johnbeynon/render-deploy-action@v0.0.8
+      - name: Deploy to Render
+        uses: JorgeLNJunior/render-deploy@v1.5.0
         with:
-          service-id: ${{ secrets.SERVICE_ID }}
-          api-key: ${{ secrets.API_KEY }}
-          wait-for-success: true
+          service_id: ${{ secrets.SERVICE_ID }}
+          api_key: ${{ secrets.API_KEY }}
+          wait_deploy: true
+          ref: 'v1.0.0'
+
+
+    # С примера от упражнението
+
+    # deploy_to_render:
+    #   needs: build_test
+    #   runs-on: ubuntu-latest
+    # steps:
+    #   - name: Deploy to production
+    #     uses: johnbeynon/render-deploy-action@v0.0.8
+    #     with:
+    #       service-id: ${{ secrets.SERVICE_ID }}
+    #       api-key: ${{ secrets.API_KEY }}
+    #       wait-for-success: true
